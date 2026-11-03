@@ -165,16 +165,16 @@ struct array {
     array& pushArray(); // Inexplicitly push empty array 
     void pushNull(); // Push null 
     // Overloaded function for setting elements at an index position
-    bool setValue(uint index, std::string value); // Set string (method 1)
-    bool setValue(uint index, const char* value); // Set string (method 2)
-    bool setValue(uint index, long long value); // Set long long 
-    bool setValue(uint index, double value); // Set double
-    bool setValue(uint index, bool value); // Set bool 
-    bool setValue(uint index, std::unique_ptr<object> value); // Set the object explicitly (original structure will be moved) 
-    bool setValue(uint index, std::unique_ptr<array> value); // Set the array explicitly (original structure will be moved) 
-    object* emplaceObject(uint index); // Inexplicitly set empty object
-    array* emplaceArray(uint index); // Inexplicitly set empty array
-    bool setNull(uint index); // Set null 
+    bool setValue(unsigned int index, std::string value); // Set string (method 1)
+    bool setValue(unsigned int index, const char* value); // Set string (method 2)
+    bool setValue(unsigned int index, long long value); // Set long long 
+    bool setValue(unsigned int index, double value); // Set double
+    bool setValue(unsigned int index, bool value); // Set bool 
+    bool setValue(unsigned int index, std::unique_ptr<object> value); // Set the object explicitly (original structure will be moved) 
+    bool setValue(unsigned int index, std::unique_ptr<array> value); // Set the array explicitly (original structure will be moved) 
+    object* emplaceObject(unsigned int index); // Inexplicitly set empty object
+    array* emplaceArray(unsigned int index); // Inexplicitly set empty array
+    bool setNull(unsigned int index); // Set null 
     // Other array-related functions 
     // Copying the array 
     // Returns a NON-COPYABLE pointer to the newly allocated copy 
@@ -186,7 +186,7 @@ struct array {
     array* goToParentArray();
     // Removing the element with at the index position
     // If such element doesn't exist, returns false
-    bool remove(uint index);
+    bool remove(unsigned int index);
 };
 
 // Internal structure that allows to have a polymorphyc type 

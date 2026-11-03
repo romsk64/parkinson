@@ -296,7 +296,7 @@ template<typename T>
 bool runTestArraySet(
     const char* json,
     const char* name,
-    uint index,
+    unsigned int index,
     const T& value
 ) {
     std::istringstream in(json);

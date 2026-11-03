@@ -117,55 +117,55 @@ void json::array::pushNull() {
     data.push_back(json::value{ std::monostate{}, JSON_NULL });
 }
 
-bool json::array::setValue(uint index, std::string value) {
+bool json::array::setValue(unsigned int index, std::string value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ value, JSON_STRING };
     return true;
 }
 
-bool json::array::setValue(uint index, const char* value) {
+bool json::array::setValue(unsigned int index, const char* value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ std::string(value), JSON_STRING };
     return true;
 }
 
-bool json::array::setValue(uint index, long long value) {
+bool json::array::setValue(unsigned int index, long long value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ value, JSON_NUMBER };
     return true;
 }
 
-bool json::array::setValue(uint index, double value) {
+bool json::array::setValue(unsigned int index, double value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ value, JSON_NUMBER };
     return true;
 }
 
-bool json::array::setValue(uint index, bool value) {
+bool json::array::setValue(unsigned int index, bool value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ value, JSON_BOOL };
     return true;
 }
 
-bool json::array::setValue(uint index, std::unique_ptr<json::object> value) {
+bool json::array::setValue(unsigned int index, std::unique_ptr<json::object> value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ std::move(value), JSON_OBJECT };
     return true;
 }
 
-bool json::array::setValue(uint index, std::unique_ptr<json::array> value) {
+bool json::array::setValue(unsigned int index, std::unique_ptr<json::array> value) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ std::move(value), JSON_ARRAY };
     return true;
 }
 
-bool json::array::setNull(uint index) {
+bool json::array::setNull(unsigned int index) {
     if(data.size() - 1 < index) return false;
     data[index] = json::value{ std::monostate{}, JSON_NULL };
     return true;
 }
 
-json::object* json::array::emplaceObject(uint index) {
+json::object* json::array::emplaceObject(unsigned int index) {
     if(data.size() - 1 < index) return nullptr;
     auto obj = std::make_unique<json::object>();
     obj->addParentArray(this);
@@ -173,14 +173,14 @@ json::object* json::array::emplaceObject(uint index) {
     return std::get<std::unique_ptr<json::object>>(data[index].value).get();
 }
 
-json::array* json::array::emplaceArray(uint index) {
+json::array* json::array::emplaceArray(unsigned int index) {
     if(data.size() - 1 < index) return nullptr;
     auto arr = std::make_unique<json::array>();
     data[index] = json::value{ std::move(arr), JSON_OBJECT };
     return std::get<std::unique_ptr<json::array>>(data[index].value).get();
 }
 
-bool json::array::remove(uint index) {
+bool json::array::remove(unsigned int index) {
    if(data.size() - 1 < index) return false;
    data.erase(data.begin() + index);
    return true;
